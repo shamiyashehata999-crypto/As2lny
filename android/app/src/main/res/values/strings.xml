@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">اسألني</string>
+    <string name="loading">جاري التحميل...</string>
+    <string name="error">حدث خطأ</string>
+    <string name="logout">تسجيل خروج</string>
+    <string name="login">تسجيل دخول</string>
+    <string name="register">إنشاء حساب</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="name">الاسم</string>
+</resources>
