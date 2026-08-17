@@ -1,3 +1,6 @@
+# Asalni - Android Application Build Configuration
+# اسألني - إعدادات بناء تطبيق الأندرويد
+
 plugins {
     id 'com.android.application'
 }
@@ -12,7 +15,11 @@ android {
         targetSdk 34
         versionCode 1
         versionName '4.0.0'
+        
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        
+        vectorDrawables.useSupportLibrary true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -21,10 +28,13 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'API_BASE', '"https://asalni.onrender.com"'
+            buildConfigField 'String', 'APP_VERSION', '"4.0.0"'
         }
         debug {
             debuggable true
+            minifyEnabled false
             buildConfigField 'String', 'API_BASE', '"http://192.168.1.100:8080"'
+            buildConfigField 'String', 'APP_VERSION', '"4.0.0-debug"'
         }
     }
 
@@ -32,18 +42,72 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+
+    buildFeatures {
+        buildConfig true
+        viewBinding true
+    }
+
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/proguard/androidx-*.pro']
+        }
+    }
 }
 
 dependencies {
+    // Core Android
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.webkit:webkit:1.8.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    
+    // WebView
+    implementation 'androidx.webkit:webkit:1.8.1'
+    
+    // Material Design
+    implementation 'com.google.android.material:material:1.9.0'
+    
+    // Network
     implementation 'com.squareup.okhttp3:okhttp:4.11.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.11.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    
+    // JSON
     implementation 'com.google.code.gson:gson:2.10.1'
+    
+    // Security
     implementation 'androidx.security:security-crypto:1.1.0-alpha06'
+    implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha06'
+    
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+    
+    // Crypto
+    implementation 'commons-codec:commons-codec:1.15'
+    
+    // Utilities
+    implementation 'org.json:json:20230918'
+    
+    // UUID
+    implementation 'com.google.guava:guava:32.1.3-android'
+    
+    // Lifecycle
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.6.2'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.6.2'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.6.2'
     
     // Testing
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test:rules:1.5.2'
+    
+    // Debugging
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
 }
