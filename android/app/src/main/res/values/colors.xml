@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#0b1020</color>
+    <color name="panel">#121933</color>
+    <color name="text">#eef2ff</color>
+    <color name="muted">#a7b0d5</color>
+    <color name="brand">#6d7cff</color>
+    <color name="brand_2">#35c6ff</color>
+    <color name="success">#20c997</color>
+    <color name="warning">#ffc857</color>
+    <color name="danger">#ff6b6b</color>
+</resources>
